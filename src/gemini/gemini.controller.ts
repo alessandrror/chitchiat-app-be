@@ -29,8 +29,8 @@ export class GeminiController {
     required: true,
   })
   async createGenerateContentStream(
-    @Res() res: Response,
     @Body() body: CreateGenerateContentRequest,
+    @Res() res: Response,
   ) {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');

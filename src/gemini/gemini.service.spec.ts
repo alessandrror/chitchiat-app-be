@@ -15,4 +15,30 @@ describe('GeminiService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  describe('createGenerateContent', () => {
+    it('should return a string', () => {
+      expect(
+        service.createGenerateContent({
+          data: {
+            role: 'human',
+            content: 'Ola',
+          },
+        }),
+      ).toBeInstanceOf(String);
+    });
+  });
+
+  describe('createGenerateContentStream', () => {
+    it('should return a string', () => {
+      expect(
+        service.createGenerateContentStream({
+          data: {
+            role: 'human',
+            content: 'Ola',
+          },
+        }),
+      ).toBeInstanceOf(String);
+    });
+  });
 });

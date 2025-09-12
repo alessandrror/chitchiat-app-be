@@ -17,24 +17,5 @@ export class GeminiService {
 
   async createGenerateContentStream({ data }: GeminiGenerateContentParams) {
     return await this.llm.stream([new HumanMessage(data)]);
-    // try {
-    //   for await (const chunk of await this.llm.stream([
-    //     new HumanMessage(data),
-    //   ])) {
-    //     if (chunk && chunk.content) {
-    //       console.log(chunk.content);
-    //       for (const line of (chunk.content as string).split('\n')) {
-    //         console.log(`data: ${line}\n`);
-    //         yield `data: ${line}\n`;
-    //       }
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    //   yield `data: ${error}\n`;
-    // }
-
-    // yield `event: close\n`;
-    // yield `data: {}`;
   }
 }
