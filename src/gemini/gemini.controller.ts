@@ -16,8 +16,7 @@ export class GeminiController {
   })
   async createGenerateContent(@Body() body: CreateGenerateContentRequest) {
     return this.geminiService.createGenerateContent({
-      data: body.contents,
-      model: body.model,
+      data: body.contents[0],
     });
   }
 }

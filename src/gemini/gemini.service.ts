@@ -1,23 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import Gemini from '@google/genai';
-import {
-  CreateGenerateContentDto,
-  GeminiModelDto,
-} from './dto/create-generate-content.request';
+import { HumanMessage } from '@langchain/core/messages';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
+import { CreateGenerateContentDto } from './dto/create-generate-content.request';
 
 type GeminiGenerateContentParams = {
-  data: Array<CreateGenerateContentDto>;
-  model: GeminiModelDto;
+  data: CreateGenerateContentDto;
 };
 
 @Injectable()
 export class GeminiService {
-  constructor(private readonly gemini: Gemini.GoogleGenAI) {}
+  constructor(private readonly llm: ChatGoogleGenerativeAI) {}
 
-  async createGenerateContent({ data, model }: GeminiGenerateContentParams) {
-    return this.gemini.models.generateContent({
-      contents: data,
-      model: model.name ?? 'gemini-2.5-flash',
-    });
+  async createGenerateContent({ data }: GeminiGenerateContentParams) {
+    return await this.llm.invoke([new HumanMessage(data)]);
   }
 }

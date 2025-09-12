@@ -36,26 +36,15 @@ export class GeminiModelDto {
   maxOutputTokens?: number;
 }
 
-export class CreateGenerateContentPartDto {
+export class CreateGenerateContentDto {
+  @IsString()
+  @ApiProperty({ example: 'human', description: 'The role of the content' })
+  role: 'human' | 'AI' | 'system' | 'developer' | 'tool';
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ example: 'Hello World', description: 'The text of the part' })
-  text: string;
-}
-
-export class CreateGenerateContentDto {
-  @IsString()
-  @ApiProperty({ example: 'user', description: 'The role of the content' })
-  role: string;
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => CreateGenerateContentPartDto)
-  @ApiProperty({
-    type: [CreateGenerateContentPartDto],
-    description: 'The parts of the content',
-  })
-  parts: Array<CreateGenerateContentPartDto>;
+  content: string;
 }
 
 export class CreateGenerateContentRequest {
@@ -66,7 +55,7 @@ export class CreateGenerateContentRequest {
     type: [CreateGenerateContentDto],
     description: 'The contents to generate',
   })
-  contents: Array<CreateGenerateContentDto>;
+  contents: CreateGenerateContentDto[];
 
   @ValidateNested()
   @Type(() => GeminiModelDto)
