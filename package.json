@@ -31,7 +31,8 @@
     "class-validator": "^0.14.2",
     "langchain": "^0.3.31",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "zod": "^4.1.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
