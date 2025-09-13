@@ -38,20 +38,17 @@ describe('GeminiController', () => {
   describe('createGenerateContentStream', () => {
     it('should return a string', () => {
       expect(
-        controller.createGenerateContentStream(
-          {
-            contents: [
-              {
-                role: 'human',
-                content: 'Ola',
-              },
-            ],
-            model: {
-              name: 'gemini-2.5-flash',
+        controller.createGenerateContentStream(response, {
+          contents: [
+            {
+              role: 'human',
+              content: 'Ola',
             },
+          ],
+          model: {
+            name: 'gemini-2.5-flash',
           },
-          response,
-        ),
+        }),
       ).toBeInstanceOf(String);
     });
   });
