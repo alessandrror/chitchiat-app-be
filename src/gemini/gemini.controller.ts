@@ -21,16 +21,16 @@ export class GeminiController {
     });
   }
 
-  @Post()
-  @Sse('streamContent')
+  @Post('streamContent')
+  @Sse()
   @ApiBody({
     type: CreateGenerateContentRequest,
     description: 'The content to generate',
     required: true,
   })
   async createGenerateContentStream(
-    @Body() body: CreateGenerateContentRequest,
     @Res() res: Response,
+    @Body() body: CreateGenerateContentRequest,
   ) {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
