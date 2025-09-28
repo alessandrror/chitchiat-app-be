@@ -9,7 +9,7 @@ import { CreateGenerateContentRequest } from './dto/create-generate-content.requ
 export class GeminiController {
   constructor(private readonly geminiService: GeminiService) {}
 
-  @Post('generateContent')
+  @Post('generate-content')
   @ApiBody({
     type: CreateGenerateContentRequest,
     description: 'The content to generate',
@@ -21,7 +21,7 @@ export class GeminiController {
     });
   }
 
-  @Post('streamContent')
+  @Post('stream-content')
   @Sse()
   @ApiBody({
     type: CreateGenerateContentRequest,
@@ -35,6 +35,7 @@ export class GeminiController {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
+    res.statusCode = 200;
     res.flushHeaders();
 
     try {
