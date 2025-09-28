@@ -17,7 +17,7 @@ async function bootstrap() {
     .setTitle('Chitchiat API')
     .setDescription('The Chitchiat API description')
     .setVersion('0.0.1')
-    .addTag('chats')
+    .addTag('Chats')
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
