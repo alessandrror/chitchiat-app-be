@@ -39,7 +39,7 @@ export class GeminiModelDto {
 export class CreateGenerateContentDto {
   @IsString()
   @ApiProperty({ example: 'human', description: 'The role of the content' })
-  role: 'human' | 'AI' | 'system' | 'developer' | 'tool';
+  role: 'human' | 'ai' | 'system' | 'developer' | 'tool';
 
   @IsString()
   @IsNotEmpty()
