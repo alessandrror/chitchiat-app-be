@@ -60,3 +60,34 @@ export class GeminiController {
     }
   }
 }
+
+// @Sse('stream')
+// @ApiBody({
+//   type: CreateGenerateContentRequest,
+//   description: 'The content to generate',
+//   required: true,
+// })
+// async stream(
+//   @Query() query: {q: string},
+// ): Promise<Observable<MessageEvent>> {
+//   return new Observable<MessageEvent>(subscriber => {
+//     console.log(query.q);
+//     (async () => {
+//       try {
+//         const stream = await this.geminiService.createGenerateContentStream({
+//           data: JSON.parse(query.q).contents[0],
+//         });
+
+//         for await (const chunk of stream) {
+//           if (chunk && (chunk as any).content) {
+//             subscriber.next({ data: { content: (chunk as any).content } });
+//           }
+//         }
+//         // subscriber.next({ data: 'DONE' });
+//         subscriber.complete();
+//       } catch (error) {
+//         subscriber.error(error);
+//       }
+//     })();
+//   });
+// }

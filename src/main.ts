@@ -11,7 +11,13 @@ async function bootstrap() {
 
   app.enableCors({ origin: true });
 
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Chitchiat API')
@@ -26,7 +32,7 @@ async function bootstrap() {
 
   SwaggerModule.setup('swagger', app, documentFactory, options);
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3001);
 }
 
 void bootstrap();
